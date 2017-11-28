@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-#     Copyright (C) 2015 Tim Ker
+#     Copyright (C) 2017 Jiri Raz
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,20 +21,21 @@ import xbmcaddon
 import xbmcgui
 import xbmc
 import sys
-import subprocess
 import os
+
+sys.path.append('/storage/.kodi/addons/virtual.rpi-tools/lib')
+import RPi.GPIO as GPIO
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(12,GPIO.OUT)
+
 
 addon = xbmcaddon.Addon()
 addon_name = addon.getAddonInfo('name')
 addon_path = addon.getAddonInfo('path')
 
 
-def ensurePath():
-	 binPath = '/opt/vc/bin'
-	 paths = os.environ["PATH"].split(os.pathsep)
-	 if binPath not in paths:
-		 os.environ["PATH"] += os.pathsep + binPath     
-     
 class Screensaver(xbmcgui.WindowXMLDialog):
 
     class ExitMonitor(xbmc.Monitor):
@@ -47,14 +48,13 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 
     def onInit(self):
         self.log('onInit')
-        ensurePath()
-        subprocess.call('vcgencmd display_power 0', shell=True)
+        GPIO.output(12,False)
         self.exit_monitor = self.ExitMonitor(self.exit)
 
     def exit(self):
         self.abort_requested = True
         self.exit_monitor = None
-        subprocess.call('vcgencmd display_power 1', shell=True)
+	GPIO.output(12,True)
         self.log('exit')
         self.close()
 

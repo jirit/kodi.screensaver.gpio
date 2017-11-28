@@ -15,7 +15,7 @@
         <source>https://github.com/jirit/kodi.screensaver.gpio</source>
         <email></email>
         <summary lang="en"></summary>
-        <description>Turns off backlight over gpio. Based on http://lektiondestages.blogspot.cz/2016/06/adding-gpio-pwm-backlight-control-to-5.html</description>
+        <description>Turns off backlight over gpio 12. Based on http://lektiondestages.blogspot.cz/2016/06/adding-gpio-pwm-backlight-control-to-5.html</description>
         <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     </extension>
 </addon>
