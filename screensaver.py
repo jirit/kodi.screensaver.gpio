@@ -30,6 +30,13 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(12,GPIO.OUT)
 
+def gpio_toggle():
+
+   if GPIO.input(12):
+        GPIO.output(12,False)
+   else:
+        GPIO.output(12,True)
+
 
 addon = xbmcaddon.Addon()
 addon_name = addon.getAddonInfo('name')
@@ -48,13 +55,13 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 
     def onInit(self):
         self.log('onInit')
-        GPIO.output(12,False)
+        gpio_toggle()
         self.exit_monitor = self.ExitMonitor(self.exit)
 
     def exit(self):
         self.abort_requested = True
         self.exit_monitor = None
-	GPIO.output(12,True)
+	gpio_toggle()
         self.log('exit')
         self.close()
 
