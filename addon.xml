@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="kodi.screensaver.gpio" name="gpio" version="0.0.1" provider-name="Jiri Raz">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="xbmc.addon"  version="12.0.0"/>
+        <import addon="virtual.rpi-tools"/>
+    </requires>
+    <extension point="xbmc.ui.screensaver" library="screensaver.py" />
+    <extension point="xbmc.python.script" library="screensaver.py" />
+    <extension point="xbmc.addon.metadata">
+        <provides>executable</provides>
+        <platform>linux</platform>
+        <language/>
+        <website></website>
+        <source>https://github.com/jirit/kodi.screensaver.gpio</source>
+        <email></email>
+        <summary lang="en"></summary>
+        <description>Turns off backlight over gpio. Based on http://lektiondestages.blogspot.cz/2016/06/adding-gpio-pwm-backlight-control-to-5.html</description>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    </extension>
+</addon>
